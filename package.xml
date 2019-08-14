@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<package>
+    <name>Order_approval</name>
+    <version>0.4.0.0</version>
+    <stability>stable</stability>
+    <license uri="http://www.opensource.org/licenses/osl-3.0.php">OSL v3.0</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>Items can be added to cart, but cannot be checked out until a nominated approver checks the order.</summary>
+    <description>Another useful extension by web-to-print and dynamic imaging guys.&#xD;
+It's in an early stage yet, but we are working on it. Watch this space.&#xD;
+&#xD;
+How it works&#xD;
+&#xD;
+Nominate one approver per user.&#xD;
+&#xD;
+Any purchases made by a user with an approver have to go through&#xD;
+an additional approval step. Any items can be added to cart, but only&#xD;
+approved items can be checked out.&#xD;
+&#xD;
+When a user tried to check out a shopping cart it checks&#xD;
+for any new unapproved items and sends an email to the nominated approver.&#xD;
+The approver can log in, view the list of items and then either approve or&#xD;
+cancel the purchase.&#xD;
+&#xD;
+Users without a nominated approver can check out as usual.</description>
+    <notes>* New implementation (issue #813)&#xD;
+* Add support for order creation via admin inteface&#xD;
+* Allow to set approver per customer group (issue #812)&#xD;
+* Send notification emails to customer (issue #330)</notes>
+    <authors><author><name>Anatoly A. Kazantsev</name><user>jimcrow</user><email>anatoly.kazantsev@gmail.com</email></author></authors>
+    <date>2013-04-02</date>
+    <time>19:29:49</time>
+    <contents><target name="mageetc"><dir name="modules"><file name="ZetaPrints_OrderApproval.xml" hash="5ee48ca83fdb3610c659d6a9e4d2e027"/></dir></target><target name="magecommunity"><dir name="ZetaPrints"><dir name="OrderApproval"><dir name="Block"><dir name="Customercart"><dir name="Edit"><dir name="Grid"><dir name="Column"><dir name="Renderer"><file name="Abstract.php" hash="36cf6a845ec51140ba219d3d74aab6d9"/><file name="Image.php" hash="9e9d90fc91a3ab6e7a09f8e91732f7c8"/><file name="Price.php" hash="51fe87a6aaa99e783eaafe5acf5c6286"/><file name="Productoptions.php" hash="5323448e054b6ac27780558c78bcfe15"/><file name="Qty.php" hash="009857ec32aae2ffbf63f1946c49d104"/><file name="Subtotal.php" hash="2ab57a194db635119d63104c04a48139"/></dir></dir></dir><file name="Grid.php" hash="c86a99fc1a4664ed8ba33d072affa59a"/></dir><file name="Edit.php" hash="9b386d9afc94d1efe2cf33aa8a67058c"/><file name="Item.php" hash="4f929b8f21b30247bcb3a4b335b2af2a"/></dir><file name="Customercart.php" hash="427b8e13430c1a992cc1191a44a229e0"/></dir><dir name="Helper"><file name="Data.php" hash="610297515e9a82854931c6b847eea73e"/></dir><dir name="Model"><dir name="Entity"><dir name="Attribute"><dir name="Source"><file name="Approvers.php" hash="afa73cdcf25ad5feeb6f6eca3f036ca5"/></dir></dir></dir><dir name="Events"><file name="Observer.php" hash="fdf9c655eab2d8677c9988bb467a1f98"/></dir><file name="Quote.php" hash="f61302aa2f19f2f501b608dd74462215"/><dir name="System"><dir name="Config"><dir name="Source"><file name="Admins.php" hash="a95bce3314aafb7997434b03fa400389"/></dir></dir></dir></dir><dir name="controllers"><file name="CustomercartController.php" hash="61f8db95cbcfe3b54f5735ea7dccc176"/></dir><dir name="data"><dir name="orderapproval_setup"><file name="data-upgrade-2-3.php" hash="dbd1420d7518a2722b0584638610e4be"/></dir></dir><dir name="etc"><file name="config.xml" hash="c50bab9c0ee8e8b375f71f0bae1ff7eb"/><file name="system.xml" hash="1524e066af4ae39b7b4ab984c89c2264"/></dir><dir name="sql"><dir name="orderapproval_setup"><file name="mysql4-data-upgrade-1-2.php" hash="e51e107f343a4c31bd9fe2b12afb855a"/><file name="mysql4-install-1.php" hash="2ed307cae48c5d639ba5cfcbb3a4ad44"/><file name="upgrade-2-3.php" hash="b37238d5590f1206cbe0c90e4fc94bee"/></dir></dir></dir></dir></target><target name="magelocale"><dir name="en_US"><dir name="template"><dir name="email"><dir name="orderapproval"><file name="approved_items.html" hash="0e6d600f5f2c0dec5af90e47e0b9c1f5"/><file name="declined_items.html" hash="d72e51f7ddb3501e5c07b79a2f0970f3"/><file name="items_to_approve.html" hash="ecaaf635d93eb95139b52edc825411ce"/></dir></dir></dir></dir></target><target name="magedesign"><dir name="frontend"><dir name="base"><dir name="default"><dir name="template"><dir name="order-approval"><dir><dir name="cart"><dir name="edit"><dir name="grid"><dir name="column"><dir name="renderer"><file name="image.phtml" hash="eb90230daaba6696b09d00d53967d6a2"/><file name="price.phtml" hash="f47bc098cbe31f40861b89744f76a8a6"/><file name="product-options.phtml" hash="de73952675681ad5d66bebd8878a7295"/><file name="qty.phtml" hash="efa017d34741b02b72d8f962ee7704af"/><file name="subtotal.phtml" hash="6bdd910cc427f4f0bd30dcf869d2b1da"/></dir></dir></dir></dir><file name="edit.phtml" hash="1a6ac3ef492885f1e9d828284c48e28e"/><dir name="item"><file name="customer_info.phtml" hash="f89251d5b85a12935035f5158436eb18"/></dir><file name="item.phtml" hash="126f38ae97f9c5340a17e0ea0a134302"/></dir></dir><file name="cart.phtml" hash="25bb08c2c3a7692454b05df9ffad47a9"/></dir><dir name="widget"><dir><dir name="grid"><file name="container.phtml" hash="3eac12f7df27bdfeb2115467e8c03120"/><file name="massaction.phtml" hash="c1c2350057d49aa434939c79c3565567"/></dir></dir><file name="grid.phtml" hash="6c81f87e9c6fd9db99ffe88f8220357c"/></dir><dir name="email"><dir name="orderapproval"><file name="item.phtml" hash="0293fb78798fca32ce700992d76d1a0d"/><file name="items.phtml" hash="2af569531af93ed829f2b78a981f26bb"/></dir></dir></dir><dir name="layout"><file name="order-approval.xml" hash="b981473db04e0a206ea19df6a65dcb1f"/></dir></dir></dir></dir></target><target name="mageskin"><dir name="frontend"><dir name="base"><dir name="default"><dir name="css"><dir name="order-approval"><file name="styles.css" hash="ea6d3b28888a140bf44fe38c9b5a34c6"/></dir></dir></dir></dir></dir></target></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.2.0</min><max>6.0.0</max></php></required></dependencies>
+</package>
