@@ -46,7 +46,7 @@ class ZetaPrints_OrderApproval_Model_Events_Observer {
     //only not approved items for futher processing.
 
     //For every item from the quote check...
-    foreach ($quote->getAllVisibleItems(true) as $item)
+    foreach ($quote->getAllVisibleItems() as $item)
       //... if it's approved then...
       if ($item->getApproved())
         //...remove it from the cart
@@ -329,7 +329,14 @@ class ZetaPrints_OrderApproval_Model_Events_Observer {
           if (count($quote->getItemsCollection())
                                                 == count($items_to_approve)) {
             //... redirect to shopping cart page
-            $controller->setRedirectWithCookieCheck('checkout/cart');
+
+            //Add support for Magento < 1.7
+            if (method_exists($controller, 'setRedirectWithCookieCheck'))
+              $controller->setRedirectWithCookieCheck('checkout/cart');
+            else
+              $controller
+                ->getResponse()
+                ->setRedirect(Mage::getUrl('checkout/cart'));
 
             return;
           }

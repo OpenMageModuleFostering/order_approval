@@ -62,7 +62,7 @@ class ZetaPrints_OrderApproval_CustomerCartController
               ->loadByCustomer($customer_id);
 
     if (!$quote->getId()) {
-      $this->_redirect('');
+      $this->_redirect('orderapproval/customercart/all');
 
       return;
     }
@@ -186,6 +186,19 @@ class ZetaPrints_OrderApproval_CustomerCartController
 
     $item->setOptions($optionCollection->getOptionsByItem($item));
 
+    $settings = new Varien_Object(array(
+      'email_notification' => true
+    ));
+
+    Mage::dispatchEvent(
+      'orderapproval_quote_state_updated',
+      array(
+        'quote' => $quote,
+        'state' => $state,
+        'settings' => $settings
+      )
+    );
+
     $emails = array($customer->getEmail());
     $names = array($customer->getName());
 
@@ -204,18 +217,19 @@ class ZetaPrints_OrderApproval_CustomerCartController
         ->addNotice($this->__('Product was declined'));
     }
 
-    Mage::getModel('core/email_template')
-      ->sendTransactional(
-        $template,
-        'sales',
-        $emails,
-        $names,
-        array(
-          'items' => array($item),
-          'number_of_items' => 1,
-          'customer' => $customer,
-        )
-      );
+    if ($settings->getData('email_notification'))
+      Mage::getModel('core/email_template')
+        ->sendTransactional(
+          $template,
+          'sales',
+          $emails,
+          $names,
+          array(
+            'items' => array($item),
+            'number_of_items' => 1,
+            'customer' => $customer,
+          )
+        );
 
     $this->_redirect('*/*/edit', array('customer' => $quote->getCustomerId()));
   }
@@ -298,6 +312,19 @@ class ZetaPrints_OrderApproval_CustomerCartController
       $items[] = $item;
     }
 
+    $settings = new Varien_Object(array(
+      'email_notification' => true
+    ));
+
+    Mage::dispatchEvent(
+      'orderapproval_quote_state_updated',
+      array(
+        'quote' => $quote,
+        'state' => $state,
+        'settings' => $settings
+      )
+    );
+
     if ($state == ZetaPrints_OrderApproval_Helper_Data::APPROVED) {
       $template = Mage::getStoreConfig(self::XML_APPROVED_TEMPLATE);
 
@@ -313,18 +340,19 @@ class ZetaPrints_OrderApproval_CustomerCartController
         ->addNotice($this->__('Selected products were declined'));
     }
 
-    Mage::getModel('core/email_template')
-      ->sendTransactional(
-        $template,
-        'sales',
-        $emails,
-        $names,
-        array(
-          'items' => $items,
-          'number_of_items' => count($items),
-          'customer' => $customer,
-        )
-      );
+    if ($settings->getData('email_notification'))
+      Mage::getModel('core/email_template')
+        ->sendTransactional(
+          $template,
+          'sales',
+          $emails,
+          $names,
+          array(
+            'items' => $items,
+            'number_of_items' => count($items),
+            'customer' => $customer,
+          )
+        );
 
     $this->_redirect('*/*/edit', array('customer' => $quote->getCustomerId()));
   }
