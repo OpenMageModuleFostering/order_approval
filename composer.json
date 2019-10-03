@@ -1,16 +1,19 @@
 {
-    "name": "OpenMageModuleFostering/Order_approval",
+    "name": "OpenMageModuleFostering\/Order_approval",
     "type": "magento-module",
     "license": "OSL-v3.0",
     "homepage": "",
     "description": "Items can be added to cart, but cannot be checked out until a nominated approver checks the order.",
     "authors": [
-    {
-        "name": "Anatoly A. Kazantsev",
-        "email": "anatoly@zetaprints.com"
-    }
-],
+        {
+            "name": "Anatoly A. Kazantsev",
+            "email": "anatoly@zetaprints.com"
+        }
+    ],
     "suggest": {
-        "magento-hackathon/magento-composer-installer": "*"
-    }
+        "magento-hackathon\/magento-composer-installer": "*"
+    },
+    "keywords": [
+        "openmage-module"
+    ]
 }
